@@ -1,0 +1,57 @@
+/* List.css */
+
+/* header 스타일 설정 */
+.basic-info-list {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(235, 235, 235);
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* place-list 스타일 설정 */
+.place-list {
+  display: flex;
+  gap: 10px;
+}
+
+/* place-item 스타일 설정 */
+.place-item {
+  height: 250px;
+  flex: 1; /* 각 place-item이 같은 너비를 갖도록 flex: 1 속성 추가 */
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.place-item img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.place-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  float: right;
+}
+
+/* 기타 스타일 설정 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.custom-main-padding {
+  padding: 20px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #ccc;
+}
