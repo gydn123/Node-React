@@ -6,11 +6,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-interface ListDetailProps {
-  images: string[];
+interface Imagedata {
+  _id: string;
+  placename: string;
+  address: string;
+  category: string;
+  images: string;
 }
 
-function ListDetail({ images }: ListDetailProps) {
+interface ListDetailProps {
+  images: Imagedata[]; // 이미지 데이터를 배열로 전달
+}
+
+const ListDetail: React.FC<ListDetailProps> = ({ images }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -23,39 +31,64 @@ function ListDetail({ images }: ListDetailProps) {
   };
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
     <>
-    <aside className="restaurant-photo">
-      <div>
+      <aside className="restaurant-photo">
         <div>
-          <figure className="list-photo">
-            <figure className="restaurant-photo-items" onClick={handleOpenModal}>
-              <img src={images[currentImageIndex]} alt="" />
+          <div>
+            <figure className="list-photo">
+              <figure
+                className="restaurant-photo-items"
+                onClick={handleOpenModal}
+              >
+                <ul>
+                  {images.map((imageData, index) => (
+                    <li key={index}>
+                      <img src={imageData.images} alt={`Image ${index}`} />
+                    </li>
+                  ))}
+                </ul>
+                {/* <img src={images[currentImageIndex]} alt="" /> */}
+              </figure>
             </figure>
-          </figure>
-        </div>
-      </div>
-      <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
-        <div className="modal">
-          <div className="modal-content">
-          <button className="left-button" onClick={handlePrevImage}><i className="bi bi-chevron-left"></i></button>
-          <div className="modal-image">
-          <img src={images[currentImageIndex]} alt="" />
-          </div>
-          <button className="right-button" onClick={handleNextImage}><i className="bi bi-chevron-right"></i></button>
-        <button className="modal-close" onClick={handleCloseModal}><i className="bi bi-x-lg"></i></button>
           </div>
         </div>
-      </Modal>
-    </aside>
-    <div className="column-contents">
+        <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
+          <div className="modal">
+            <div className="modal-content">
+              <button className="left-button" onClick={handlePrevImage}>
+                <i className="bi bi-chevron-left"></i>
+              </button>
+              <div className="modal-image">
+                {/* <img src={images[currentImageIndex]} alt="" /> */}
+              </div>
+              <button className="right-button" onClick={handleNextImage}>
+                <i className="bi bi-chevron-right"></i>
+              </button>
+              <img
+                src={images[currentImageIndex]?.images}
+                alt={`Image ${currentImageIndex}`}
+              />
+
+              <button className="modal-close" onClick={handleCloseModal}>
+                <i className="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+        </Modal>
+      </aside>
+      <div className="column-contents">
         <div className="inner">
           {/* 레스토랑 상세 정보 */}
           <section className="restaurant-detail">
@@ -111,6 +144,6 @@ function ListDetail({ images }: ListDetailProps) {
       </div>
     </>
   );
-}
+};
 
 export default ListDetail;
