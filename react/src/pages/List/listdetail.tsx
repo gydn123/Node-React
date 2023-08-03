@@ -53,10 +53,30 @@ const ListDetail: React.FC<ListDetailProps> = ({ images }) => {
                 onClick={handleOpenModal}
               >
                 <ul>
+                  <p className="place-photo">
+                    <img
+                      src="https://mp-seoul-image-production-s3.mangoplate.com/492453/1042666_1688268955600_1000016246"
+                      alt=""
+                      width="500px;"
+                      height="340px"
+                    />{" "}
+                    <img
+                      src="https://mp-seoul-image-production-s3.mangoplate.com/492453/1042666_1688268955600_1000016246"
+                      alt=""
+                      width="500px;"
+                      height="340px"
+                    />{" "}
+                    <img
+                      src="https://mp-seoul-image-production-s3.mangoplate.com/492453/1042666_1688268955600_1000016246"
+                      alt=""
+                      width="500px;"
+                      height="340px"
+                    />
+                  </p>
                   {images.map((imageData, index) => (
-                    <li key={index}>
+                    <p key={index}>
                       <img src={imageData.images} alt={`Image ${index}`} />
-                    </li>
+                    </p>
                   ))}
                 </ul>
                 {/* <img src={images[currentImageIndex]} alt="" /> */}
@@ -101,8 +121,14 @@ const ListDetail: React.FC<ListDetailProps> = ({ images }) => {
                   </strong>
                 </span>
                 {/* 리뷰쓰기 버튼과 위시리스트 버튼 */}
-                <button className="review-btn">리뷰쓰기</button>
-                <button className="wishlist-btn">위시리스트</button>
+                <button className="review-btn">
+                  <i className="bi bi-pencil"></i>
+                  <span className="review-btn-txt">리뷰쓰기</span>
+                </button>
+                <button className="wishlist-btn">
+                  <i className="bi bi-star"></i>
+                  <span className="wishlist-btn-txt">가고싶다</span>
+                </button>
               </div>
               {/* 방문횟수, 리뷰횟수, 위시리스트 횟수 */}
               <p className="visit-count">방문횟수: 100</p>
@@ -127,8 +153,44 @@ const ListDetail: React.FC<ListDetailProps> = ({ images }) => {
           <hr />
           {/* 리뷰들을 보여줄 부분 */}
           <section className="reviews">
-            {/* 리뷰들을 여기에 표시해주세요 */}
-            리뷰
+            <header className="RestaurantReviewList__Header">
+              <h2 className="RestaurantReviewList__Title">
+                <span className="RestaurantReviewList__RestaurantName">
+                  돌산식당
+                </span>
+                <span className="RestaurantReviewList__AllCount"> (8)</span>
+              </h2>
+              <ul className="RestaurantReviewList__FilterList">
+                <li className="RestaurantReviewList__FilterItem">
+                  <button className="RestaurantReviewList__FilterButton RestaurantReviewList__FilterButton--Selected RestaurantReviewList__AllFilterButton">
+                    전체(
+                    <span className="RestaurantReviewList__ReviewCount">8</span>
+                    )
+                  </button>
+                </li>
+                <li className="RestaurantReviewList__FilterItem">
+                  <button className="RestaurantReviewList__FilterButton">
+                    맛있다(
+                    <span className="RestaurantReviewList__ReviewCount">4</span>
+                    )
+                  </button>
+                </li>
+                <li className="RestaurantReviewList__FilterItem">
+                  <button className="RestaurantReviewList__FilterButton">
+                    괜찮다(
+                    <span className="RestaurantReviewList__ReviewCount">2</span>
+                    )
+                  </button>
+                </li>
+                <li className="RestaurantReviewList__FilterItem">
+                  <button className="RestaurantReviewList__FilterButton">
+                    별로다(
+                    <span className="RestaurantReviewList__ReviewCount">2</span>
+                    )
+                  </button>
+                </li>
+              </ul>
+            </header>
           </section>
         </div>
         <div className="column-side">

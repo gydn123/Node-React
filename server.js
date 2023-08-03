@@ -41,6 +41,8 @@ app.get("/api/data", async (req, res) => {
       { _id: 1, placename: 1, address: 1, category: 1, images: 1 }
     );
     res.json(data);
+    // var matzipdata = res.json(data);
+    // console.log(matzipdata);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });

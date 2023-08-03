@@ -65,12 +65,13 @@
 }
 
 .inner {
-  max-width: 1200px;
+  max-width: 1600px;
   padding: 20px;
 }
 
 .restaurant-detail {
   margin-bottom: 40px;
+  width: 800px;
 }
 
 .restaurant_title_wrap {
@@ -78,26 +79,60 @@
   align-items: center;
 }
 
+/* .place-photo li img {
+  width: 500px;
+  height: 500px;
+} */
+
+.title span {
+  font-size: 1.8rem;
+  /* line-height: 46px; */
+}
+
 .restaurant_name {
   font-size: 28px;
+  margin-right: 10px;
+  float: left;
+  margin-top: 5px;
+}
+.visit-count,
+.review-count {
+  float: left;
   margin-right: 10px;
 }
 
 .rate-point {
   color: #888;
   font-size: 18px;
-  margin-right: 300px; /* 흐릿한 회색 별점 옆 간격 */
+  /* margin-left: 10px; */
+  float: left;
+}
+.review-btn {
+  margin-left: 500px;
+}
+.wishlist-btn {
+  margin-left: 10px;
 }
 
 .review-btn,
 .wishlist-btn {
-  margin-left: 10px;
   padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: white;
+  color: #6c757d; /* Gray color for icon and text */
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.review-btn:hover,
+.wishlist-btn:hover {
+  background-color: white; /* Orange color on hover */
+  color: #ff7e00; /* Text color on hover */
+}
+
+.review-icon,
+.wishlist-icon {
+  margin-right: 5px; /* Add space between icon and text */
 }
 
 .visit-count,
@@ -124,7 +159,70 @@
 
 /* reviews 스타일 */
 .reviews {
-  margin-top: 20px;
+  position: relative;
+  padding: 20px;
+  background-color: white;
+}
+
+.RestaurantReviewList__Header {
+  /* display: flex;
+  align-items: center; */
+  margin-bottom: 10px;
+  font-size: 10px; /* Font size for the review count */
+}
+
+.RestaurantReviewList__Title {
+  font-size: 24px;
+}
+
+.RestaurantReviewList__AllCount,
+.RestaurantReviewList__ReviewCount {
+  color: #777;
+}
+
+/* Styling for the buttons */
+.RestaurantReviewList__FilterList {
+  list-style: none;
+  display: flex;
+  margin-left: 500px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  /* right: 500px; Position the buttons 500px from the right */
+}
+
+.RestaurantReviewList__FilterItem {
+  margin-right: 10px;
+}
+
+.RestaurantReviewList__FilterButton {
+  padding: 5px 10px;
+  background-color: white;
+  /* color: #007bff; */
+  border: none;
+  /* border-radius: 4px; */
+  cursor: pointer;
+  /* transition: background-color 0.3s, color 0.3s; */
+  /* list-style: none; */
+}
+
+.RestaurantReviewList__FilterButton::before {
+  content: "|"; /* Custom bullet style, using | symbol */
+  margin-right: 5px;
+}
+
+.RestaurantReviewList__FilterButton:hover {
+  /* background-color: #007bff; */
+  color: orange;
+}
+
+.RestaurantReviewList__FilterButton--Selected {
+  /* background-color: #007bff; */
+  /* color: white; */
+}
+
+.RestaurantReviewList__ReviewCount {
+  margin-left: 5px;
 }
 
 /* 리뷰 수와 전체 리뷰 수 스타일 */
@@ -132,7 +230,7 @@
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: #888;
+  /* color: #888; */
 }
 
 .review-stats strong {
