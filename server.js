@@ -11,10 +11,13 @@ app.use(
   })
 );
 
-mongoose.connect("mongodb://localhost:27017/matzip", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://Crescent:kCUnTEfeJaUq1Da4@cluster0.knnf2pw.mongodb.net/DealiciousFood",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -23,26 +26,47 @@ db.once("open", () => {
 });
 
 // 데이터 모델 정의
-const matzipSchema = new mongoose.Schema({
-  _id: Object,
-  placename: String,
-  address: String,
-  category: String,
-  images: String,
+const trustBestSchema = new mongoose.Schema({
+  trustBest: [
+    {
+      src: String,
+      alt: String,
+      titleText: String,
+      content: String,
+      url: String,
+    },
+  ],
 });
 
 // 테이블(컬렉션) 가져오기
-const Matzip = mongoose.model("matzip", matzipSchema);
+const DealiciousFood = mongoose.model(
+  "DealiciousFood",
+  trustBestSchema,
+  "DealiciousFood"
+);
 
-app.get("/api/data", async (req, res) => {
+// 데이터를 가져오는 핸들러
+app.get("/api/data/trustBest", async (req, res) => {
   try {
-    const data = await Matzip.find(
-      {},
-      { _id: 1, placename: 1, address: 1, category: 1, images: 1 }
-    );
+    const data = await DealiciousFood.aggregate([
+      // $unwind를 사용하여 trustBest 배열의 요소를 풀어줍니다.
+      { $unwind: "$trustBest" },
+
+      // $project를 사용하여 필요한 필드들만 선택합니다.
+      {
+        $project: {
+          _id: 1,
+          src: "$trustBest.src",
+          alt: "$trustBest.alt",
+          titleText: "$trustBest.titleText",
+          content: "$trustBest.content",
+          url: "$trustBest.url",
+        },
+      },
+    ]);
+
     res.json(data);
-    // var matzipdata = res.json(data);
-    // console.log(matzipdata);
+    console.log(data);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });

@@ -6,19 +6,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-interface Imagedata {
-  _id: string;
-  placename: string;
-  address: string;
-  category: string;
-  images: string;
+interface TrustBestItem {
+  src: string;
+  alt: string;
+  titleText: string;
+  content: string;
+  url: string;
 }
 
 interface ListDetailProps {
-  images: Imagedata[]; // 이미지 데이터를 배열로 전달
+  TrustBestItem: TrustBestItem[]; // 이미지 데이터를 배열로 전달
 }
 
-const ListDetail: React.FC<ListDetailProps> = ({ images }) => {
+const ListDetail: React.FC<ListDetailProps> = ({ TrustBestItem }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -32,13 +32,13 @@ const ListDetail: React.FC<ListDetailProps> = ({ images }) => {
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? TrustBestItem.length - 1 : prevIndex - 1
     );
   };
 
   const handleNextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === TrustBestItem.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -73,9 +73,9 @@ const ListDetail: React.FC<ListDetailProps> = ({ images }) => {
                       height="340px"
                     />
                   </p>
-                  {images.map((imageData, index) => (
+                  {TrustBestItem.map((imageData, index) => (
                     <p key={index}>
-                      <img src={imageData.images} alt={`Image ${index}`} />
+                      <img src={imageData.src} alt={`Image ${index}`} />
                     </p>
                   ))}
                 </ul>
@@ -97,7 +97,7 @@ const ListDetail: React.FC<ListDetailProps> = ({ images }) => {
                 <i className="bi bi-chevron-right"></i>
               </button>
               <img
-                src={images[currentImageIndex]?.images}
+                src={TrustBestItem[currentImageIndex]?.src}
                 alt={`Image ${currentImageIndex}`}
               />
 

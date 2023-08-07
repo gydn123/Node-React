@@ -5,30 +5,35 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import List from "./pages/List/list";
 import ListDetail from "./pages/List/listdetail";
 import { response } from "express";
+import Menubar from "./pages/List/menubar";
 
-interface Imagedata {
-  _id: string;
-  placename: string;
-  address: string;
-  category: string;
-  images: string;
+interface TrustBestItem {
+  src: string;
+  alt: string;
+  titleText: string;
+  content: string;
+  url: string;
 }
 
 function App() {
-  const [imagedata, setImagedata] = useState<Imagedata[]>([]);
+  const [trustBest, settrustBest] = useState<TrustBestItem[]>([]);
 
   useEffect(() => {
     axios
-      .get<Imagedata[]>("http://localhost:8080/api/data") // 수정된 주소로 변경
-      .then((response) => setImagedata(response.data))
+      .get<TrustBestItem[]>("http://localhost:8080/api/data/trustBest") // 수정된 주소로 변경
+      .then((response) => settrustBest(response.data))
       .catch((error) => console.error(error));
   }, []);
 
   return (
     <Router>
+      <Menubar />
       <Routes>
         <Route path="/list" element={<List />} />
-        <Route path="/listdetail" element={<ListDetail images={imagedata} />} />
+        <Route
+          path="/listdetail"
+          element={<ListDetail TrustBestItem={trustBest} />}
+        />
       </Routes>
     </Router>
   );
