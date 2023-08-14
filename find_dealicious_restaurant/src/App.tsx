@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/search/:searchValue" element={<SearchList />}></Route>
-          <Route path="/top_lists" element={<Top_lists />} />
+          <Route path="/top_lists/:queryValue" element={<Top_lists />} />
           <Route path="/listdetail" element={<ListDetail />} />
         </Routes>
       </BrowserRouter>

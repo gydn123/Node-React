@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Top_lists.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -14,15 +14,23 @@ interface TrustBestItem {
 }
 const Top_lists: React.FC = () => {
   const [useTrustBestData, setUseTrustBestData] = useState<TrustBestItem[]>([]);
-
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const queryValue = queryParams.get("type"); // 쿼리스트링의 "type" 파라미터 추출
+  console.log(queryValue + "queryValue@@@");
   useEffect(() => {
-    getTrustBest();
-  }, []);
+    if (queryValue) {
+      getTrustBest(queryValue);
+      console.log(queryValue + "@@queryValue@@@이펙트");
+    }
+  }, [queryValue]);
 
-  const getTrustBest = async () => {
+  const getTrustBest = async (queryValue: string) => {
     try {
-      const response = await fetch("http://localhost:4500/trustBest");
-
+      const response = await fetch(
+        `http://localhost:4500/trustBest/type=${queryValue}`
+      );
+      console.log(queryValue + "@@queryValue@@@페치");
       if (!response.ok) {
         const errorData = await response.json();
         const statusCode = response.status;

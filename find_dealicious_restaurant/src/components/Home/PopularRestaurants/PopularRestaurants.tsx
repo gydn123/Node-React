@@ -76,8 +76,8 @@ const PopularRestaurants: React.FC<PopularRestaurantsProps> = ({
       {useTrustBestData && (
         <section>
           <Module_title_wrap>
-            <Module_title_name>믿고 보는 맛집 리스트</Module_title_name>
-            <Module_more>리스트 더보기</Module_more>
+            <Module_title_name>믿고 보는 맛집 리스트1</Module_title_name>
+            <Module_more>리스트 더보기1</Module_more>
           </Module_title_wrap>
           <SliderContainer>
             <SlideButton onClick={clickSlideLeft} style={{ marginRight: 10 }}>

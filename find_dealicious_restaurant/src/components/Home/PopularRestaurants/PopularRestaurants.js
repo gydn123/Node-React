@@ -73,21 +73,22 @@ const PopularRestaurants = ({ itemsPerPage, columns, }) => {
     };
     return (react_1.default.createElement(react_1.default.Fragment, null, useTrustBestData && (react_1.default.createElement("section", null,
         react_1.default.createElement(shared_componentCSS_1.Module_title_wrap, null,
-            react_1.default.createElement(shared_componentCSS_1.Module_title_name, null, "\uBBFF\uACE0 \uBCF4\uB294 \uB9DB\uC9D1 \uB9AC\uC2A4\uD2B8"),
-            react_1.default.createElement(shared_componentCSS_1.Module_more, null, "\uB9AC\uC2A4\uD2B8 \uB354\uBCF4\uAE30")),
+            react_1.default.createElement(shared_componentCSS_1.Module_title_name, null, "\uBBFF\uACE0 \uBCF4\uB294 \uB9DB\uC9D1 \uB9AC\uC2A4\uD2B81"),
+            react_1.default.createElement(shared_componentCSS_1.Module_more, null, "\uB9AC\uC2A4\uD2B8 \uB354\uBCF4\uAE301")),
         react_1.default.createElement(shared_componentCSS_1.SliderContainer, null,
             react_1.default.createElement(shared_componentCSS_1.SlideButton, { onClick: clickSlideLeft, style: { marginRight: 10 } }, "<"),
             react_1.default.createElement(shared_componentCSS_1.ImageWrapper, { columns: columns, rows: 2, height: 492 },
                 react_1.default.createElement(react_1.default.Fragment, null, useTrustBestData
                     .slice((usePopularSlide % numberOfGroups) * itemsPerPage, (usePopularSlide % numberOfGroups) * itemsPerPage +
                     itemsPerPage)
-                    .map((image, index) => (react_1.default.createElement(shared_componentCSS_1.ImageContainer, { key: index, onDragStart: (e) => e.preventDefault(), height: 236, onClick: () => moveTopList(image.url) },
-                    react_1.default.createElement(shared_componentCSS_1.Image_list, { src: image.src, alt: image.alt, height: 236 }),
-                    react_1.default.createElement(shared_componentCSS_1.ImageTitleText, { top: 30 }, image.titleText),
-                    react_1.default.createElement(shared_componentCSS_1.ImageContent, { top: 50 },
-                        "\"",
-                        image.content,
-                        "\"")))))),
+                    .map((image, index) => (react_1.default.createElement("a", { href: image.url, key: index },
+                    react_1.default.createElement(shared_componentCSS_1.ImageContainer, { key: index, onDragStart: (e) => e.preventDefault(), height: 236, onClick: () => moveTopList(image.url) },
+                        react_1.default.createElement(shared_componentCSS_1.Image_list, { src: image.src, alt: image.alt, height: 236 }),
+                        react_1.default.createElement(shared_componentCSS_1.ImageTitleText, { top: 30 }, image.titleText),
+                        react_1.default.createElement(shared_componentCSS_1.ImageContent, { top: 50 },
+                            "\"",
+                            image.content,
+                            "\""))))))),
             react_1.default.createElement(shared_componentCSS_1.SlideButton, { onClick: clickSlideRight, style: { marginLeft: 10 } }, ">"))))));
 };
 exports.default = PopularRestaurants;
