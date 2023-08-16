@@ -43,6 +43,7 @@ const Top_lists = () => {
     const location = (0, react_router_dom_1.useLocation)();
     const queryParams = new URLSearchParams(location.search);
     const queryValue = queryParams.get("type"); // 쿼리스트링의 "type" 파라미터 추출
+    console.log(queryParams + "@@queryParams@@@");
     console.log(queryValue + "queryValue@@@");
     (0, react_1.useEffect)(() => {
         if (queryValue) {
@@ -52,7 +53,7 @@ const Top_lists = () => {
     }, [queryValue]);
     const getTrustBest = (queryValue) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const response = yield fetch(`http://localhost:4500/trustBest/type=${queryValue}`);
+            const response = yield fetch(`http://localhost:4500/trustBest`);
             console.log(queryValue + "@@queryValue@@@페치");
             if (!response.ok) {
                 const errorData = yield response.json();

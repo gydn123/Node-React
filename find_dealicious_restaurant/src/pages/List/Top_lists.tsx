@@ -17,6 +17,7 @@ const Top_lists: React.FC = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const queryValue = queryParams.get("type"); // 쿼리스트링의 "type" 파라미터 추출
+  console.log(queryParams + "@@queryParams@@@");
   console.log(queryValue + "queryValue@@@");
   useEffect(() => {
     if (queryValue) {
@@ -27,9 +28,7 @@ const Top_lists: React.FC = () => {
 
   const getTrustBest = async (queryValue: string) => {
     try {
-      const response = await fetch(
-        `http://localhost:4500/trustBest/type=${queryValue}`
-      );
+      const response = await fetch(`http://localhost:4500/trustBest`);
       console.log(queryValue + "@@queryValue@@@페치");
       if (!response.ok) {
         const errorData = await response.json();
