@@ -16,11 +16,11 @@ interface Tag {
 
 interface Comment {
   list: {
-    point: number,
-    contents: String,
-    username: String,
-    profile: String,
-    date: String,
+    point: number;
+    contents: String;
+    username: String;
+    profile: String;
+    date: String;
   }[];
 }
 
